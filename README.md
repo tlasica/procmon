@@ -13,9 +13,11 @@ Sysstat has to be installed and running:
 
     sudo apt-get install sysstat
 
-ProcMon uses *octave* to plot charts from the logged sar/pidstat outputs:
+Now running
 
-    sudo apt-get install octave
+    sar -u 1 3
+
+Should show some cpu statistics to verify systtat works correctly.
 
 # Usage
 
@@ -45,3 +47,6 @@ Output directory will include:
 
 Plots (not implemented yet) can be generated offline.
 
+ProcMon uses *octave* to plot charts from the logged sar/pidstat outputs:
+
+    sudo apt-get install octave
