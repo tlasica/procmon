@@ -23,7 +23,7 @@ def check_command_execution(cmd_and_params):
 
 
 def create_out_dir():
-    now_str = datetime.now().isoformat().split('.')[0].replace("-","").replace(":","").replace("T","_")
+    now_str = datetime.now().isoformat().split('.')[0].replace("-", "").replace(":", "").replace("T", "_")
     path = '/'.join(['out', now_str])
     try:
         os.makedirs(path)
@@ -120,10 +120,10 @@ import sys, argparse
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-i', dest='interval', default="1", help = "monitoring interval in sec (def 1).")
-    parser.add_argument('-r', dest='rounds', default="1000", help = "number of monitoring rounds (def 1000)")
-    parser.add_argument('-p', dest='pids', default="", help = "list of pids for monitoring")
-    parser.add_argument('--auto', dest='automonitoring', action="store_true", help = "auto monitoring of new processes")
+    parser.add_argument('-i', dest='interval', default="1", help="monitoring interval in sec (def 1).")
+    parser.add_argument('-r', dest='rounds', default="1000", help="number of monitoring rounds (def 1000)")
+    parser.add_argument('-p', dest='pids', default="", help="list of pids for monitoring")
+    parser.add_argument('--auto', dest='automonitoring', action="store_true", help="auto monitoring of new processes")
     args = parser.parse_args()
 
     interval_sec = int(args.interval)

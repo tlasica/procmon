@@ -1,21 +1,17 @@
 __author__ = 'tomek'
 
 import threading, subprocess, time
-from logging import debug
+from logging import debug, exception
 
 from sarhelper import start_pid_monitoring
 
 def patterns():
-    d = {}
-    d['player'] = 'ps -C player -o pid='
-    d['vbox'] = 'ps -C VBoxHeadless -o pid='
-    return d
+    pat = {}
+    pat['player'] = 'ps -C player -o pid='
+    pat['vbox'] = 'ps -C VBoxHeadless -o pid='
+    return pat
 
-'''
-Design decisions:
-* keep map of monitored processes PID => {Popens}
-*
-'''
+
 class MonitoringThread(threading.Thread):
 
     def __init__(self, out_dir, interval):
@@ -37,19 +33,27 @@ class MonitoringThread(threading.Thread):
         for (alias, cmd) in patterns.items():
             running = self._find_running_pids_with_command(cmd)
             debug("pids for %s: %s", alias, str(running))
-            ret += running
+            if running:
+                ret += running
         return ret
 
     def _find_running_pids_with_command(self, cmd):
         cmd_args = cmd.split(' ')
-        out = subprocess.check_output(cmd_args)
-        pids = out.split('\n')
-        ret = []
-        for s in pids:
-            s_trim = s.replace(' ','')
-            if s_trim and len(s_trim)>0:
-                ret += [ int(s_trim) ]
-        return ret
+        try:
+            out = subprocess.check_output(cmd_args)
+            pids = out.split('\n')
+            ret = []
+            for pid_str in pids:
+                pid_str_trim = pid_str.replace(' ', '')
+                if pid_str_trim and len(pid_str_trim) > 0:
+                    ret += [int(pid_str_trim)]
+            return ret
+        except subprocess.CalledProcessError as exc:
+            return []
+        except Exception as exc:
+            exception(exc)
+            return []
+
 
     def _start_pidstat_for_new_pids(self, pids):
         started = {}
