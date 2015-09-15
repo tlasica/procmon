@@ -1,4 +1,4 @@
-# Genymotion Process Monitor
+# Process Monitor
 
 The tool uses sysstat tools sar and pidstat to:
 
@@ -7,7 +7,7 @@ The tool uses sysstat tools sar and pidstat to:
 3. automatically start tracking processes of given naming patterns like 'player' or 'VBox'
 4. plot all charts for logged data with one command
 
-# Installation
+## Installation
 
 Sysstat has to be installed and running:
 
@@ -19,7 +19,7 @@ Now running
 
 Should show some cpu statistics to verify systtat works correctly.
 
-# Usage
+## Usage
 
 Basic usage pattern is to start the tool before benchmark or test is started
 and ask for auto monitoring of interesting genymotion processes:
@@ -32,8 +32,7 @@ After this time script will stop.
 During the execution script will test for new player or vbox processes
 and once detected will start logging their cpu/mem/io metrics.
 
-
-# Output
+## Output
 
 Output is generated in a separate directory for each run of the script.
 Directory is created in a *out* subfolder and named with the timestamp of starting the script.
