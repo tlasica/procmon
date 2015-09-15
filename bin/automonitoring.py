@@ -8,9 +8,9 @@ from sarhelper import start_pid_monitoring
 def patterns():
     pat = {}
     pat['player'] = 'ps -C player -o pid='
-    pat['vbox'] = 'ps -C VBoxHeadless -o pid='
+    pat['vboxh'] = 'ps -C VBoxHeadless -o pid='
+    pat['vbox'] = 'ps -C VirtualBox -o pid='
     return pat
-
 
 class MonitoringThread(threading.Thread):
 
