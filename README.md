@@ -1,4 +1,4 @@
-# Genymotion Process Monitor
+Process Monitor
 
 The tool uses sysstat tools sar and pidstat to:
 
@@ -31,7 +31,6 @@ After this time script will stop.
 
 During the execution script will test for new player or vbox processes
 and once detected will start logging their cpu/mem/io metrics.
-
 
 # Output
 
