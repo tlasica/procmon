@@ -19,6 +19,7 @@ def start_os_monitoring(out_dir, interval_sec):
     spawns.append( start_sar_command( 'sar -w', interval_sec, out_dir, "os_processes.log"))
     spawns.append( start_sar_command('sar -n DEV', interval_sec, out_dir, "os_devices.log"))
     spawns.append( start_sar_command('sar -n SOCK', interval_sec, out_dir, "os_sockets.log"))
+    spawns.append( start_sar_command('vmstat -n -S M', interval_sec, out_dir, "os_vmstat.log")) 
     return spawns
 
 def pid_log_filename(pid, name):
