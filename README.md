@@ -24,7 +24,7 @@ Should show some cpu statistics to verify systtat works correctly.
 Basic usage pattern is to start the tool before benchmark or test is started
 and ask for auto monitoring of interesting genymotion processes:
 
-    python bin/procMon.py --auto -i 5 --r 120
+    python bin/procmon.py --auto -i 5 --r 120
 
 Will run the tool with 5s interval for 120 rounds, which is 10 minutes.
 After this time script will stop.
@@ -49,3 +49,5 @@ Plots (not implemented yet) can be generated offline.
 ProcMon uses *octave* to plot charts from the logged sar/pidstat outputs:
 
     sudo apt-get install octave
+
+I personally do not pollute server with octave but rather download the results to my laptop and then plot them.
